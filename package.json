@@ -1,0 +1,22 @@
+{
+  "name": "@flumens/eslint-config",
+  "version": "0.1.0",
+  "description": "Eslint config",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "eslint": ">= 3",
+    "@getify/eslint-plugin-proper-arrows": ">=10",
+    "eslint-config-airbnb": ">=18",
+    "eslint-config-prettier": ">=6",
+    "eslint-plugin-jest": ">=24",
+    "eslint-plugin-jsx-a11y": ">=6",
+    "eslint-plugin-react": ">=7",
+    "eslint-plugin-react-hooks": ">=4"
+  },
+  "author": "",
+  "license": "ISC"
+}
