@@ -17,6 +17,6 @@
     "eslint-plugin-react": ">=7",
     "eslint-plugin-react-hooks": ">=4"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Flumens",
+  "license": "MIT"
 }
