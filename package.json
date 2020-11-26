@@ -1,6 +1,6 @@
 {
   "name": "@flumens/eslint-config",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Eslint config",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,8 @@
     "eslint-plugin-jest": "^24.1.3",
     "eslint-plugin-jsx-a11y": "6.3.1",
     "eslint-plugin-react": "7.21.3",
-    "eslint-plugin-react-hooks": "^4.1.2"
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "eslint-plugin-sort-class-members": "^1.8.0"
   },
   "peerDependencies": {
     "eslint": ">= 3"

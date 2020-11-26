@@ -1,5 +1,5 @@
 module.exports = {
-  plugins: ["@getify/proper-arrows"],
+  plugins: ["@getify/proper-arrows", "sort-class-members"],
   extends: [
     "airbnb",
     "prettier",
@@ -14,6 +14,28 @@ module.exports = {
       2,
       {
         allowShortCircuit: true,
+      },
+    ],
+    "sort-class-members/sort-class-members": [
+      2,
+      {
+        order: [
+          "[static-properties]",
+          "[static-methods]",
+          "[properties]",
+          "constructor",
+          "[methods]",
+          {
+            type: "property",
+            propertyType: "ArrowFunctionExpression",
+          },
+          "[methods]",
+          {
+            name: "/^render$/",
+            type: "method",
+          },
+        ],
+        accessorPairPositioning: "getThenSet",
       },
     ],
 
