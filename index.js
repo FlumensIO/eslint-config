@@ -1,10 +1,16 @@
 module.exports = {
-  plugins: ["@getify/proper-arrows", "sort-class-members"],
+  parser: "@typescript-eslint/parser",
+  plugins: [
+    "@getify/proper-arrows",
+    "sort-class-members",
+    "@typescript-eslint",
+  ],
   extends: [
     "airbnb",
     "prettier",
     "plugin:react-hooks/recommended",
     "plugin:jest/recommended",
+    "plugin:@typescript-eslint/recommended",
   ],
   rules: {
     "no-underscore-dangle": 0,
