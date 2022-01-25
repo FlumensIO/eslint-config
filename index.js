@@ -1,4 +1,7 @@
 module.exports = {
+  env: {
+    browser: true,
+  },
   parser: "@typescript-eslint/parser",
   plugins: [
     "@getify/proper-arrows",
@@ -44,6 +47,20 @@ module.exports = {
         accessorPairPositioning: "getThenSet",
       },
     ],
+    "@typescript-eslint/no-unused-vars": "error",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        js: "never",
+        jsx: "never",
+        ts: "never",
+        tsx: "never",
+      },
+    ],
+    "@typescript-eslint/no-empty-interface": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
 
     // react
     "react/forbid-prop-types": 0,
@@ -52,6 +69,7 @@ module.exports = {
     "react/destructuring-assignment": 0,
     "react/button-has-type": 0,
     "jsx-a11y/alt-text": 0,
+    "jsx-a11y/accessible-emoji": 0,
     "react/jsx-props-no-spreading": 0,
     "react/state-in-constructor": 0,
     "react/static-property-placement": 0,
@@ -59,11 +77,20 @@ module.exports = {
     "react/no-unescaped-entities": 0,
     "jsx-a11y/no-static-element-interactions": 0,
     "jsx-a11y/click-events-have-key-events": 0,
+    "react/jsx-filename-extension": [
+      2,
+      {
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+      },
+    ],
 
     // testing
     "jest/no-if": 2,
     "jest/expect-expect": 2,
     "jest/require-top-level-describe": 2,
+
+    // swiper issue https://github.com/nolimits4web/swiper/issues/5058
+    "import/no-unresolved": [2, { ignore: ["swiper"] }],
   },
   overrides: [
     {
@@ -73,6 +100,13 @@ module.exports = {
       },
     },
   ],
+  settings: {
+    "import/resolver": {
+      "babel-module": {
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+      },
+    },
+  },
   globals: {
     __ENV__: true,
     __DEV__: true,
