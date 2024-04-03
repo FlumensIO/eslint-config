@@ -7,6 +7,7 @@ module.exports = {
     "@getify/proper-arrows",
     "sort-class-members",
     "@typescript-eslint",
+    "unused-imports",
   ],
   extends: [
     "airbnb",
@@ -47,7 +48,10 @@ module.exports = {
         accessorPairPositioning: "getThenSet",
       },
     ],
-    "@typescript-eslint/no-unused-vars": "error",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": "error",
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -63,6 +67,7 @@ module.exports = {
     "@typescript-eslint/no-use-before-define": ["error"],
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": "error",
+    "@typescript-eslint/no-explicit-any": "warn",
 
     // react
     "react/forbid-prop-types": 0,
