@@ -91,6 +91,9 @@ module.exports = {
       },
     ],
 
+    // most likely we will never use native alert
+    "no-alert": 2,
+
     // testing
     "jest/no-if": 2,
     "jest/expect-expect": 2,
