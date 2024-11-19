@@ -98,9 +98,16 @@ module.exports = {
     "jest/no-if": 2,
     "jest/expect-expect": 2,
     "jest/require-top-level-describe": 2,
-
-    // swiper issue https://github.com/nolimits4web/swiper/issues/5058
-    "import/no-unresolved": [2, { ignore: ["swiper"] }],
+    "import/no-unresolved": [
+      2,
+      {
+        "ignore": [
+          // swiper issue https://github.com/nolimits4web/swiper/issues/5058
+          "swiper",
+          "@mapbox/sphericalmercator"
+        ]
+      }
+    ]
   },
   overrides: [
     {
@@ -112,7 +119,7 @@ module.exports = {
   ],
   settings: {
     "import/resolver": {
-      "babel-module": {
+      "typescript": {
         extensions: [".js", ".jsx", ".ts", ".tsx"],
       },
     },
