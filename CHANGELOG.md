@@ -1,3 +1,8 @@
+### 3.0.0
+
+Migrate to Eslint v8. 
+Updated rules.
+
 ### 2.1.2
 
 Fix eslint vscode import errors.
