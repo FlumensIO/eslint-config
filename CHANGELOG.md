@@ -1,3 +1,7 @@
+### 3.0.1
+
+Fixed unused vars rule.
+
 ### 3.0.0
 
 Migrate to Eslint v8. 

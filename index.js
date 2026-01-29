@@ -164,6 +164,9 @@ const customRules = {
     "react/jsx-fragments": 0, // allowing both <> </> and <React.Fragment>
     "react/jsx-no-leaked-render": 0, // allowing boolean expressions in JSX
     "react/jsx-sort-props": 0, // Disabled to allow flexibility in prop ordering
+
+    "no-unused-vars": "off", // disable base rule
+    "@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "none" }], // don't allow unused vars except caught errors
   },
 };
 
