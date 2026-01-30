@@ -1,3 +1,7 @@
+### 3.0.2
+
+Fixed husky errors.
+
 ### 3.0.1
 
 Fixed unused vars rule.
