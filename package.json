@@ -1,6 +1,6 @@
 {
   "name": "@flumens/eslint-config",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "description": "Eslint config",
   "main": "index.js",
   "type": "module",

@@ -5,6 +5,7 @@ import jestPlugin from "eslint-plugin-jest";
 import prettierPlugin from "eslint-plugin-prettier";
 import sortClassMembers from "eslint-plugin-sort-class-members";
 import unusedImports from "eslint-plugin-unused-imports";
+import fs from "node:fs";
 import path from "node:path";
 import { includeIgnoreFile } from "@eslint/compat";
 import js from "@eslint/js";
@@ -170,7 +171,76 @@ const customRules = {
   },
 };
 
-export default [
+const pluralSuffixes = ["zero", "one", "two", "few", "many", "other"];
+const translationKeyPattern = /^[a-z][A-Za-z0-9]*(?:\.[A-Za-z0-9]+)+$/;
+
+const getTranslationKeys = (translations, prefix = "") =>
+  Object.entries(translations).flatMap(([key, value]) => {
+    const fullKey = prefix ? `${prefix}.${key}` : key;
+
+    return value && typeof value === "object"
+      ? getTranslationKeys(value, fullKey)
+      : fullKey;
+  });
+
+const getI18nextConfig = (translationsPath) => {
+  if (!translationsPath) return [];
+
+  const translations = JSON.parse(
+    fs.readFileSync(path.resolve(translationsPath), "utf8"),
+  );
+  const translationKeys = new Set(getTranslationKeys(translations));
+  const translationNamespaces = new Set(
+    Object.entries(translations)
+      .filter(([, value]) => value && typeof value === "object")
+      .map(([key]) => key),
+  );
+  const hasTranslationKey = (key) =>
+    translationKeys.has(key) ||
+    pluralSuffixes.some((suffix) => translationKeys.has(`${key}_${suffix}`));
+
+  const validTransKeyRule = {
+    meta: {
+      type: "problem",
+      schema: [],
+      messages: { missing: 'Missing i18next key "{{key}}".' },
+    },
+    create(context) {
+      return {
+        JSXText(node) {
+          const key = node.value.trim();
+          const tag = node.parent?.openingElement?.name;
+          const isTrans =
+            tag?.type === "JSXIdentifier" && ["T", "Trans"].includes(tag.name);
+          const hasKnownNamespace = translationNamespaces.has(
+            key.split(".")[0],
+          );
+
+          if (
+            !translationKeyPattern.test(key) ||
+            (!isTrans && !hasKnownNamespace) ||
+            hasTranslationKey(key)
+          )
+            return;
+
+          context.report({ node, messageId: "missing", data: { key } });
+        },
+      };
+    },
+  };
+
+  return [
+    {
+      name: "i18next-keys",
+      plugins: {
+        local: { rules: { "valid-trans-key": validTransKeyRule } },
+      },
+      rules: { "local/valid-trans-key": "error" },
+    },
+  ];
+};
+
+const config = (translationsPath) => [
   includeIgnoreFile(gitignorePath), // Ignore files and folders listed in .gitignore
   ...jsConfig,
   ...reactConfig,
@@ -178,4 +248,7 @@ export default [
   ...prettierConfig,
   additionalPlugins,
   customRules,
+  ...getI18nextConfig(translationsPath),
 ];
+
+export default config;

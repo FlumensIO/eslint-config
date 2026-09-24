@@ -1,3 +1,7 @@
+### 4.0.0
+
+Added an optional i18n translation key check.
+
 ### 3.0.2
 
 Fixed husky errors.
